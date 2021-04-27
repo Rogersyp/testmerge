@@ -12,6 +12,19 @@
 #include <kern/trap.h>
 
 
+/*
+void
+test_backtrace(int x)
+{
+	cprintf("entering test_backtrace %d\n", x);
+	if (x > 0)
+		test_backtrace(x-1);
+	else
+		mon_backtrace(0, 0, 0);
+	cprintf("leaving test_backtrace %d\n", x);
+}
+*/
+
 void
 i386_init(void)
 {
@@ -27,6 +40,7 @@ i386_init(void)
 	cons_init();
 
 	cprintf("444544 decimal is %o octal!\n", 444544);
+
 
 	// Lab 2 memory management initialization functions
 	mem_init();
@@ -45,6 +59,10 @@ i386_init(void)
 
 	// We only have one user environment for now, so just run it.
 	env_run(&envs[0]);
+  
+	// Test stack backtrace function (lab1)
+//	test_backtrace(5);
+
 }
 
 
